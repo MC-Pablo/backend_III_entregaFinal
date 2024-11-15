@@ -1,5 +1,6 @@
 import { fakerES_MX as faker } from "@faker-js/faker";
 import { createHash } from "../utils/security.js";
+import { USER } from "../constant/roles.constant.js";
 
 export const generateUsersMock = async (amount) => {
   const users = [];
@@ -9,7 +10,7 @@ export const generateUsersMock = async (amount) => {
       last_name: faker.person.lastName(),
       email: faker.internet.email(),
       password: await createHash("coder123"),
-      role: faker.datatype.boolean() ? "user" : "admin",
+      role: [USER],
       pets: [],
     };
     users.push(user);

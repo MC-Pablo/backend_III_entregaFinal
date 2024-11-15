@@ -1,42 +1,60 @@
-import Users from "../dao/user.dao.js";
-import { CustomError } from "../errors/custom.error.js";
+import UserRepository from "../repositories/user.repository.js";
+import { NOT_FOUND_ID } from "../constant/messages.constant.js";
 import { generateUsersMock } from "../mocks/user.mock.js";
 
-export class UserServices {
+export default class UserService {
+  #userRepository;
   constructor() {
-    // this.userRepository = new UserRepository(new Users());
-    this.userDao = new Users();
+    this.#userRepository = new UserRepository();
   }
-  async getAll() {
-    const users = await this.userDao.get();
-    return users;
+
+  async getAll(params) {
+    return await this.#userRepository.getAll(params);
   }
-  async getById(id) {
-    const user = await this.userDao.getBy(id);
-    if (!user) throw CustomError.notFoundError(`User id ${id} not found`);
-    return user;
-  }
-  async create(data) {
-    const user = await this.userDao.save(data);
+
+  async findOneById(id) {
+    const user = await this.#userRepository.getOneById(id);
+    if (!user) {
+      throw new Error(NOT_FOUND_ID);
+    }
     return user;
   }
 
-  async createMany(data) {
-    const users = await this.userDao.saveMany(data);
+  async findOneByEmailAndPassword(email, password) {
+    const user = await this.#userRepository.findOneByEmailAndPassword(
+      email,
+      password
+    );
+
+    return user;
+  }
+
+  async createUser(data) {
+    return await this.#userRepository.save(data);
+  }
+
+  async insertMany(data) {
+    const users = await this.#userRepository.insertMany(data);
     return users;
   }
 
-  async update(id, data) {
-    const user = await this.userDao.update(id, data);
-    return user;
+  async updateOneById(id, data) {
+    const user = await this.#userRepository.getOneById(id);
+    const updatedValues = { ...user, ...data };
+    return await this.#userRepository.save(updatedValues);
   }
-  async remove(id) {
-    await this.userDao.delete(id);
-    return "ok";
+
+  async deleteOneById(id) {
+    return await this.#userRepository.deleteOneById(id);
   }
+
+  async deleteManyById(data) {
+    return await this.#userRepository.deleteManyById(data);
+  }
+
   async createMocks() {
     const users = generateUsersMock(10);
     const usersDb = await this.userDao.saveMany(users);
     return usersDb;
   }
-};
+}

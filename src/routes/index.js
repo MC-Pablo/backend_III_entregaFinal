@@ -1,11 +1,15 @@
 import { Router } from "express";
-import usersRouter from "./users.route.js";
-import sessionsRouter from "./sessions.route.js";
-import mocksRouter from "./mocks.route.js";
+import usersRouter from "./api/users.router.js";
+import sessionsRouter from "./api/sessions.router.js";
+import mocksRouter from "./mocks.router.js";
+import petsRouter from "./api/pets.router.js";
+import adoptionRouter from "./api/adoption.router.js";
 
-const router = Router();
-router.use("/api/users", usersRouter);
-router.use("/api/sessions", sessionsRouter);
-router.use("/api/mocks", mocksRouter);
+const indexApiRouter = Router();
+indexApiRouter.use("/api/users", usersRouter);
+indexApiRouter.use("/api/sessions", sessionsRouter);
+indexApiRouter.use("/api/pets", petsRouter);
+indexApiRouter.use("/api/mocks", mocksRouter);
+indexApiRouter.use("api/adoptions", adoptionRouter);
 
-export default router;
+export default indexApiRouter;

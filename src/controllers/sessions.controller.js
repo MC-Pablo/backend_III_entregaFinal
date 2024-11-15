@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import UserDTO from "../dto/user.dto.js";
 import { UserServices } from "../services/user.services.js";
 
-export class SessionsController {
+export default class SessionsController {
   constructor() {
     this.userServices = new UserServices();
   }

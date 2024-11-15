@@ -1,6 +1,6 @@
 import { UserServices } from "../services/user.services.js";
 
-export class UserControllers {
+export default class UserControllers {
   constructor() {
     this.userServices = new UserServices();
   }
@@ -21,7 +21,7 @@ export class UserControllers {
     }
   };
 
-  getUser = async (req, res, next) => {
+  getUserById = async (req, res, next) => {
     try {
       const userId = req.params.uid;
 

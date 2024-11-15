@@ -3,7 +3,7 @@ import __dirname from "../utils/index.js";
 
 import { PetServices } from "../services/pet.services.js";
 
-export class PetsController {
+export default class PetsController {
   constructor() {
     this.petService = new PetServices();
   }
