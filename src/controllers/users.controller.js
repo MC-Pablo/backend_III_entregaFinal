@@ -1,4 +1,4 @@
-import { UserServices } from "../services/user.services.js";
+import UserServices from "../services/user.services.js";
 
 export default class UserControllers {
   constructor() {

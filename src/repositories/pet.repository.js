@@ -1,5 +1,5 @@
-import { toBoolean } from "../utils/index.js";
-import { PetDTO } from "../dtos/pet.dto.js";
+import { toBoolean } from "../utils/toBoolean.js";
+import PetDTO from "../dtos/pet.dto.js";
 import FactoryDAO from "../daos/factory.dao.js";
 import { NOT_FOUND_ID } from "../constants/messages.constant.js";
 

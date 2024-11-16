@@ -1,5 +1,5 @@
 import UserRepository from "../repositories/user.repository.js";
-import { NOT_FOUND_ID } from "../constant/messages.constant.js";
+import { NOT_FOUND_ID } from "../constants/messages.constant.js";
 import { generateUsersMock } from "../mocks/user.mock.js";
 
 export default class UserService {

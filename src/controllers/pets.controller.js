@@ -1,4 +1,4 @@
-import PetDTO from "../dto/pet.dto.js";
+import PetDTO from "../dtos/pet.dto.js";
 import __dirname from "../utils/index.js";
 
 import { PetServices } from "../services/pet.services.js";

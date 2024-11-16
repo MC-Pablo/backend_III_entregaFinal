@@ -1,4 +1,4 @@
-import Pet from "../dao/pet.dao.js";
+import Pet from "../daos/pet.dao.js";
 import { generatePetsMock } from "../mocks/pet.mock.js";
 
 export class PetServices {

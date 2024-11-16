@@ -6,11 +6,16 @@ import router from "./routes/index.js";
 import { errorHandler } from "./errors/errHandler.js";
 import { Logger } from "./utils/logger.js";
 import { config as DotEnv } from "./config/dotenv.config.js";
+import swaggerUiExpress from "swagger-ui-express";
+import { specs } from "./config/swagger.config.js";
 
 const server = express();
 DotEnv();
+
 connectDB();
-server.use("/api", router);
+server.use("/", router);
+
+server.use("/api-docs", swaggerUiExpress.serve, swaggerUiExpress.setup(specs))
 // Decodificadores del BODY
 server.use(express.urlencoded({ extended: true }));
 server.use(express.json());

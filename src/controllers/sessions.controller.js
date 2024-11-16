@@ -1,7 +1,7 @@
 import { createHash, isValidPassword } from "../utils/security.js";
 import jwt from "jsonwebtoken";
-import UserDTO from "../dto/user.dto.js";
-import { UserServices } from "../services/user.services.js";
+import {UserDTO} from "../dtos/user.dto.js";
+import UserServices from "../services/user.services.js";
 
 export default class SessionsController {
   constructor() {

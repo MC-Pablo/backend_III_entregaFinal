@@ -1,4 +1,4 @@
-import AdoptionService from "../services/adoption.service.js";
+import AdoptionService from "../services/adoption.services.js";
 
 export default class AdoptionController{
     #adoptionService

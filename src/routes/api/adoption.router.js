@@ -1,4 +1,3 @@
-import BaseRouter from "../base.router.js";
 import { Router } from "express";
 import AdoptionController from "../../controllers/adoption.controller.js";
 

@@ -1,6 +1,6 @@
 import { fakerES_MX as faker } from "@faker-js/faker";
 import { createHash } from "../utils/security.js";
-import { USER } from "../constant/roles.constant.js";
+import { USER } from "../constants/roles.constant.js";
 
 export const generateUsersMock = async (amount) => {
   const users = [];
