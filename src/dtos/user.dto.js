@@ -15,7 +15,7 @@ export class UserDTO{
 
     data(data){
         return {
-            id: data.id || null,
+            id: data?.id || null,
             name: data.name,
             surname: data.surname,
             email: data.email,

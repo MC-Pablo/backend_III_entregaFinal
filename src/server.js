@@ -9,9 +9,12 @@ import { config as DotEnv } from "./config/dotenv.config.js";
 import swaggerUiExpress from "swagger-ui-express";
 import { specs } from "./config/swagger.config.js";
 
+
+
 const server = express();
 DotEnv();
-
+server.use(express.urlencoded({ extended: true }));
+server.use(express.json());
 connectDB();
 server.use("/", router);
 

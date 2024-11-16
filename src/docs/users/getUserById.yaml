@@ -1,5 +1,5 @@
 paths:
-  /api/users/{id}:
+  /api/users/{uid}:
     get:
       summary: Buscar usuario por Id
       description: Get user by Id
@@ -7,7 +7,7 @@ paths:
         - Users
       parameters:
         - in: path
-          name: id
+          name: uid
           required: true
           description: Id del usuario
           schema:

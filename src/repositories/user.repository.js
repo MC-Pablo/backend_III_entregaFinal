@@ -33,6 +33,7 @@ export default class UserRepository {
     const filters = $and.length > 0 ? { $and } : {};
 
     const users = await this.#userDAO.getAll(filters, params);
+  
     const formatedUsers = users?.docs?.map((user) => this.#userDTO.model(user));
 
     users.docs = formatedUsers;
@@ -62,8 +63,11 @@ export default class UserRepository {
   }
 
   async save(data) {
+   
     const formatedData = this.#userDTO.data(data);
+
     const user = await this.#userDAO.save(formatedData);
+    
 
     return this.#userDTO.model(user);
   }

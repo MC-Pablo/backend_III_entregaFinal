@@ -30,7 +30,7 @@ const userSchema = new Schema({
 
     },
     roles: {
-        type: String,
+        type: [String],
         uppercase: true,
         default: "user"
     },

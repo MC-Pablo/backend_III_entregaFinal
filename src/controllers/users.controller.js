@@ -13,8 +13,7 @@ export default class UserControllers {
 
   getAllUsers = async (req, res, next) => {
     try {
-      const users = await this.userServices.getAll();
-      throw new Error("Nuestro error");
+      const users = await this.userServices.getAll(req.params);
       res.send({ status: "success", payload: users });
     } catch (error) {
       next(error);
@@ -25,7 +24,7 @@ export default class UserControllers {
     try {
       const userId = req.params.uid;
 
-      const user = await this.userServices.getById(userId);
+      const user = await this.userServices.findOneById(userId);
 
       res.send({ status: "success", payload: user });
     } catch (error) {
@@ -34,20 +33,36 @@ export default class UserControllers {
     }
   };
 
-  updateUser = async (req, res) => {
-    const updateBody = req.body;
-    const userId = req.params.uid;
-    const user = await this.userServices.getById(userId);
-    if (!user)
-      return res.status(404).send({ status: "error", error: "User not found" });
+  updateUser = async (req, res, next) => {
+    try {
+      const updateBody = req.body;
+      const userId = req.params.uid;
+      const user = await this.userServices.findOneById(userId);
+      if (!user)
+        return res
+          .status(404)
+          .send({ status: "error", error: "User not found" });
 
-    const result = await this.userServices.update(userId, updateBody);
-    res.send({ status: "success", message: "User updated" });
+      const result = await this.userServices.updateOneById(userId, updateBody);
+      res.send({ status: "success", message: "User updated" });
+    } catch (error) {
+      next(error);
+    }
   };
-
   deleteUser = async (req, res) => {
     const userId = req.params.uid;
     const result = await this.userServices.remove(userId);
     res.send({ status: "success", message: "User deleted" });
+  };
+
+  createUser = async (req, res, next) => {
+    try {
+      const newUser = req.body;
+      const user = await this.userServices.createUser(req.body);
+      if (!user) throw new Error("Faltan datos");
+      res.send({ status: "success", message: "User created" });
+    } catch (error) {
+      next(error);
+    }
   };
 }
